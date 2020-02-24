@@ -7,20 +7,27 @@ app.use(express.static(__dirname + "/public"));
 var cors = require('cors');
 var port=process.env.PORT || 9000;
 
-database =[{
-	id:uuid.v4(),
-	title:"Angels and Demons",	
-		},
+database ={
+	data:[
 	{
-	id:uuid.v4(),
-	title:"Deception Point",
-	
- },
-{
-	id:uuid.v4(),
-	title:"Digital Fortress",
-	
-}]
+		value:'SSO certificate 1',
+		label:'SSO certificate 1'
+	},{
+		value:'SSO certificate 2',
+		label:'SSO certificate 2'
+	},{
+		value:'SSO certificate 3',
+		label:'SSO certificate 3'
+	},{
+		value:'SSO certificate 4',
+		label:'SSO certificate 4'
+	},
+				
+	]
+  }
+
+
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -48,11 +55,18 @@ app.all('/*', function (req, res, next) {
 });
 
 
-app.get('/getbooks',function(req,res){
-	res.header("Access-Control-Allow-Origin", "*");
+app.get('/getdata',function(req,res){
+	
+	setTimeout(()=>{
+		res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-	res.json(database)
+		res.json(database)
+	},3000) 
 });
+
+
+
+
 app.post('/getbooks',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
